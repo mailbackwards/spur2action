@@ -1,13 +1,10 @@
 import os
 from flask import Flask, request, render_template, Response
+from data import MESSAGES, NAMES
 from twilio.rest import TwilioRestClient
 from twilio import twiml
 
 TWILIO_PHONE_NUMBER='+12036800787'
-
-NAMES = {
-    '+12036067072': 'Liam',
-}
 
 def send_text(recipient, body):
     client = TwilioRestClient()
@@ -28,12 +25,17 @@ def send_text_message():
 
 @app.route('/listen', methods=['GET'])
 def receive_text():
-    body = request.values.get('Body', 'no message here!')
+    req_body = request.values.get('Body', None)
+    if req_body and req_body.strip().upper() in MESSAGES:
+        resp_body = MESSAGES[req_body.strip().upper()]
+    else:
+        resp_body = "I didn't catch that. Come again?"
+
     from_number = request.values.get('From', None)
     name = NAMES[from_number] if from_number in NAMES else 'there'
 
     resp = twiml.Response()
-    resp.message('hello %s, %s' % (name, body), sender=TWILIO_PHONE_NUMBER)
+    resp.message(resp_body, sender=TWILIO_PHONE_NUMBER)
     return Response(str(resp), mimetype='text/xml')
 
 if __name__ == '__main__':
