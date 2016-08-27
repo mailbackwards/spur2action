@@ -1,6 +1,6 @@
 MESSAGES = {
     "T": {
-        "message": "So glad to hear you hate traffic.",
+        "body": 'So glad to hear you hate traffic. Read more about us at http://texasturnout.herokuapp.com.',
         "media": []
     }
 }

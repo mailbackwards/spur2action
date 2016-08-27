@@ -27,7 +27,8 @@ def send_text_message():
 def receive_text():
     req_body = request.values.get('Body', None)
     if req_body and req_body.strip().upper() in MESSAGES:
-        resp_body = MESSAGES[req_body.strip().upper()]
+        msg = MESSAGES[req_body.strip().upper()]
+        resp_body = msg['body']
     else:
         resp_body = "I didn't catch that. Come again?"
 
