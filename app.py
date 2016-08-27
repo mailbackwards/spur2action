@@ -5,6 +5,10 @@ from twilio import twiml
 
 TWILIO_PHONE_NUMBER='+12036800787'
 
+NAMES = {
+    '+12036067072': 'Liam',
+}
+
 def send_text(recipient, body):
     client = TwilioRestClient()
     client.messages.create(
@@ -24,10 +28,12 @@ def send_text_message():
 
 @app.route('/listen', methods=['GET'])
 def receive_text():
-    #content = request.form.get('content')
+    body = request.values.get('Body', 'no message here!')
+    from_number = request.values.get('From', None)
+    name = NAMES[from_number] if from_number in NAMES else 'there'
 
     resp = twiml.Response()
-    resp.say('hello', sender=TWILIO_PHONE_NUMBER)
+    resp.message('hello %s, %s' % (name, body), sender=TWILIO_PHONE_NUMBER)
     return Response(str(resp), mimetype='text/xml')
 
 if __name__ == '__main__':
