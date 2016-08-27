@@ -7,7 +7,13 @@
 <body>
     <p><img src="https://github.com/mailbackwards/texasturnout/raw/master/static/s2a_logo.png" /></p>
     <p>
-        <button type="button" onclick="sendMessage();">Send Prop 1 message</button>
+        <button type="button" onclick="sendMessage('prop1');">Send Prop 1 message</button>
+        <button type="button" onclick="sendMessage('prop1-snack');">Send Prop1 snack</button>
+        <button type="button" onclick="sendMessage('prop1-prevote');">Send Prop1 Prevote message</button>
+    </p>
+    <p>
+        <button type="button" onclick="sendMessage('prek');">Send Pre-K message</button>
+        <button type="button" onclick="sendMessage('prek-prevote');">Send Pre-K Prevote message</button>
     </p>
     <p>
         <input type="text" placeholder="Message" id="message" />
@@ -15,8 +21,8 @@
     </p>
     <p id="success-placeholder"></p>
     <script>
-        function sendMessage() {
-            $.post('/send', {'type': 'prop1'}, function(data) {
+        function sendMessage(type) {
+            $.post('/send', {'type': type}, function(data) {
                 $('#success-placeholder').text('Success!');
             }, 'json')
         }
