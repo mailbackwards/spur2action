@@ -7,14 +7,22 @@
 <body>
     <p><img src="https://github.com/mailbackwards/texasturnout/raw/master/static/s2a_logo.png" /></p>
     <p>
+        <button type="button" onclick="sendMessage();">Send Prop 1 message</button>
+    </p>
+    <p>
         <input type="text" placeholder="Message" id="message" />
-        <button type="button" onclick="sendMessage();">Send</button>
+        <button type="button" onclick="sendCustomMessage();">Send custom message</button>
     </p>
     <p id="success-placeholder"></p>
     <script>
         function sendMessage() {
+            $.post('/send', {'type': 'prop1'}, function(data) {
+                $('#success-placeholder').text('Success!');
+            }, 'json')
+        }
+        function sendCustomMessage() {
             var msg = $('#message').val()
-            $.post('/send', {'body': msg}, function(data) {
+            $.post('/send', {'message': msg}, function(data) {
                 $('#success-placeholder').text('Success!');
             }, 'json')
         }

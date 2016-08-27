@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template, Response
-from data import MESSAGES, NAMES
+from data import MESSAGES, REPLIES, NAMES
 from twilio.rest import TwilioRestClient
 from twilio import twiml
 
@@ -19,15 +19,18 @@ def hello():
 
 @app.route('/send', methods=['POST'])
 def send_text_message():
-    body = request.form.get('body')
-    send_text('+12036067072', body)
+    if 'type' in request.form:
+        msg = MESSAGES[request.form.get('type')]
+    else:
+        msg = request.form.get('message')
+    send_text('+12036067072', msg)
     return 'Success!'
 
 @app.route('/listen', methods=['GET'])
 def receive_text():
     req_body = request.values.get('Body', None)
-    if req_body and req_body.strip().upper() in MESSAGES:
-        msg = MESSAGES[req_body.strip().upper()]
+    if req_body and req_body.strip().upper() in REPLIES:
+        msg = REPLIES[req_body.strip().upper()]
         resp_body = msg['body']
     else:
         resp_body = "I didn't catch that. Come again?"
