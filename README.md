@@ -2,7 +2,7 @@
 
 ### Requirements
 
-`pip install twilio`
+`pip install -r requirements.txt`
 
 Set the following environment variables:
 

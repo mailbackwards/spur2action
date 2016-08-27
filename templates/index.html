@@ -1,0 +1,30 @@
+<head>
+    <title>Texas Turnout</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <p>
+        <input type="text" placeholder="Message" id="message" />
+        <button type="button" onclick="sendMessage();">Send</button>
+    </p>
+    <p id="success-placeholder"></p>
+    <script>
+        function sendMessage() {
+            var msg = $('#message').val()
+            $.post('/send', {'body': msg}, function(data) {
+                $('#success-placeholder').text('Success!');
+            }, 'json')
+            // $.ajax({
+            //     method: 'POST',
+            //     url: '/send',
+            //     data: {'body': msg},
+            //     dataType: 'json',
+            //     success: function(data) {
+            //         $('#success-placeholder').text('Success!');
+            //     }
+            // })
+        }
+    </script>
+</body>
