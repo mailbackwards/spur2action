@@ -16,15 +16,6 @@
             $.post('/send', {'body': msg}, function(data) {
                 $('#success-placeholder').text('Success!');
             }, 'json')
-            // $.ajax({
-            //     method: 'POST',
-            //     url: '/send',
-            //     data: {'body': msg},
-            //     dataType: 'json',
-            //     success: function(data) {
-            //         $('#success-placeholder').text('Success!');
-            //     }
-            // })
         }
     </script>
 </body>
