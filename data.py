@@ -46,6 +46,10 @@ REPLIES = {
         ),
         "media": []
     },
+    "T-followup": {
+        "body": 'Prop 1 is on Saturday, May 7. Practice voting and see what happens! Text YES or NO.',
+        "media": [],
+    },
     "YES": {
         "body": (
             'Voting "yes" on the proposition means standard background checks '
@@ -65,8 +69,8 @@ REPLIES = {
         "media": []
     },
     "MORE": {
-        "body": 'Here is more info about local issues in San Antonio!',
-        "media": []
+        "body": 'Here is more info about local issues in San Antonio:',
+        "media": ['http://i.giphy.com/3o6ozAxsUHHV2Kmy7m.gif']
     },
     "STOP": {
         "body": "Just kidding, you can't escape! Muhahahaha.",

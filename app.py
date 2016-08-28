@@ -35,11 +35,21 @@ def receive_text():
     else:
         resp_body = "I didn't catch that. Come again?"
 
+    media = REPLIES[req_body.strip().upper()].get('media', None)
     from_number = request.values.get('From', None)
     name = NAMES[from_number] if from_number in NAMES else 'there'
 
     resp = twiml.Response()
-    resp.message(resp_body, sender=TWILIO_PHONE_NUMBER)
+    msg = twiml.Message(resp_body, sender=TWILIO_PHONE_NUMBER)
+    if media:
+        msg.media(media[0])
+    resp.append(msg)
+
+    # extra catch for the demo
+    if req_body.strip().upper() == 'T':
+        supplemental = REPLIES['T-followup']['body']
+        resp.message(supplemental, sender=TWILIO_PHONE_NUMBER)
+
     return Response(str(resp), mimetype='text/xml')
 
 if __name__ == '__main__':
