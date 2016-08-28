@@ -42,7 +42,7 @@ REPLIES = {
             'aiming to inform you about your local problems/issues. Look forward '
             'to hearing more the latest transportation issue coming up in your area. '
             'Learn more about us at http://texasturnout.herokuapp.com. '
-            "Reply STOP at any time, and we won't send you any more updates!"
+            "Reply STOP at any time, and we won't send you any more updates."
         ),
         "media": []
     },
@@ -69,7 +69,7 @@ REPLIES = {
         "media": []
     },
     "MORE": {
-        "body": 'Here is more info about local issues in San Antonio:',
+        "body": 'Here is more info about local issues in San Antonio.',
         "media": ['http://i.giphy.com/3o6ozAxsUHHV2Kmy7m.gif']
     },
     "STOP": {
