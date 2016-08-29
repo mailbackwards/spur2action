@@ -22,13 +22,13 @@
     <p id="success-placeholder"></p>
     <script>
         function sendMessage(type) {
-            $.post('/send', {'type': type}, function(data) {
+            $.post('/send', {'type': type, 'to': '+15555555'}, function(data) {
                 $('#success-placeholder').text('Success!');
             }, 'json')
         }
         function sendCustomMessage() {
             var msg = $('#message').val()
-            $.post('/send', {'message': msg}, function(data) {
+            $.post('/send', {'message': msg, 'to': '+15555555'}, function(data) {
                 $('#success-placeholder').text('Success!');
             }, 'json')
         }

@@ -4,7 +4,7 @@ from data import MESSAGES, REPLIES, NAMES
 from twilio.rest import TwilioRestClient
 from twilio import twiml
 
-TWILIO_PHONE_NUMBER='+12036800787'
+TWILIO_PHONE_NUMBER = os.environ.get('TWILIO_PHONE_NUMBER')
 
 def send_text(recipient, body):
     client = TwilioRestClient()
@@ -23,7 +23,8 @@ def send_text_message():
         msg = MESSAGES[request.form.get('type')]
     else:
         msg = request.form.get('message')
-    send_text('+12036067072', msg)
+    to = request.form.get('to')
+    send_text(to, msg)
     return 'Success!'
 
 @app.route('/listen', methods=['GET'])
